@@ -10,7 +10,7 @@ export const authMiddleware = (req, res, next) => {
     try {
         const decoded = jwt.verify(token, "codesecret");
         req.user = decoded;
-        console.log(req.user._id) // Esto permite que la información del usuario esté disponible en las rutas protegidas
+        console.log(decoded) // Esto permite que la información del usuario esté disponible en las rutas protegidas
         next();
     } catch (error) {
         return res.status(400).json({ message: "Token inválido." });

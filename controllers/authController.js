@@ -19,7 +19,7 @@ export const Register = async (req,res) => {
         email: email
     })
     await credentials.save()
-    res.status(200).json({message: "registro creado"}, credentials)
+    res.status(200).json({message: "registro creado", credentials})
 } catch (error) {
     res.status(500).json({message:" ha habido algun error"})    
 }
@@ -38,6 +38,7 @@ export const Login  = async (req,res ) => {
             }
         }
         const token = jwt.sign({
+            _id:user.id,
             email: email,
             role: user.role,
         }, process.env.SECRET_KEY)
