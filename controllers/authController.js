@@ -1,4 +1,4 @@
-import { User } from "../authModel.js"
+import { User } from "../models/authModel.js"
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
 
@@ -40,7 +40,7 @@ export const Login  = async (req,res ) => {
         const token = jwt.sign({
             email: email,
             role: user.role,
-        }, "codesecret")
+        }, process.env.SECRET_KEY)
         await res.header({
             "auth":token
         })
